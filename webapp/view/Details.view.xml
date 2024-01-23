@@ -1,7 +1,8 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" controllerName="zpcveiculo.controller.Details" displayBlock="true">
     <Page id="idDetailsPage" title="{i18n>titleDetails}" contentOnlyBusy="true">
     <content>
-        <smartForm:SmartForm id="idSmartForm" editTogglable="true" validationMode="Async" editToggled="onSmartFormEditToggled">
+        <VBox id="idVBox" class="sapUiSmallMargin">
+            <smartForm:SmartForm id="idSmartForm" editTogglable="true" validationMode="Async" editToggled="onSmartFormEditToggled">
                     <smartForm:customToolbar>
                         <Toolbar id="idToolbar" width="100%" height="100%">
                             <ToolbarSpacer id="id1ToolbarSpacer"/>
@@ -69,6 +70,54 @@
                     </smartForm:Group>
                 </smartForm:groups>
             </smartForm:SmartForm>
+            <Toolbar id="idSpacerToolbar" width="100%" height="1em"/>
+            <Table
+                id="idVeiculoAtribUnidTranspTable"
+                items="{
+                            path: '/VeiculoAtribUnidTransp'
+                        }"
+                busyIndicatorDelay="200"
+                autoPopinMode="true"
+            >
+                <headerToolbar>
+                    <OverflowToolbar id="idTableOverflowToolbar">
+                        <Title
+                            id="idUnidadesDeTransporteTitle"
+                            text="{i18n>TUs}"
+                            level="H2"
+                        />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column id="idVehicleColumn" hAlign="Center" importance="High" width="6em">
+                        <Text id="idVeculoText"  text="{i18n>Vehicle}" />
+                    </Column>
+                    <Column id="idTuNumberColumn" hAlign="Center" importance="High" width="7em">
+                        <Text id="idTuNumberText" text="{i18n>TuNumber}" />
+                    </Column>
+                    <Column id="idSeqNumberColumn" hAlign="Center" importance="High" width="7em">
+                        <Text id="idSeqNumberText" text="{i18n>SeqNumber}" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem id="idColumnListItem" vAlign="Middle">
+                        <cells>         
+                            <Input
+                                id="idVehicleInput"
+                                value="{Vehicle}"
+                                fieldWidth="60%"
+                                valueLiveUpdate="true"
+                                editable="false"
+                                maxLength="16"
+                                width="8em"
+                            />
+                            <ObjectIdentifier id="idTuNumberObjectIdentifier" text="{TuNumber}" />
+                            <ObjectIdentifier id="idSeqNumberObjectIdentifier" text="{SeqNumber}"/>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </VBox>
     </content>
 </Page>
 </mvc:View>
