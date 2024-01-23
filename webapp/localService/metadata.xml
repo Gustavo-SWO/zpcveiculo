@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZPC_VEICULO_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="HT001w" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Werks"/>
+                </Key>
+                <Property Name="PostCode1" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Postal Code" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sort1" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Search Term 1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Sort2" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Search Term 2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Werks" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Nation" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Address Version" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Name2" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Name 2" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="City1" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="City" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HT006" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Msehi"/>
+                </Key>
+                <Property Name="Txdim" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Dimension text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Msehl" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="UoM Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Msehi" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Internal UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="Mseh3" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Commercial" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HTfacd" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Ident"/>
+                </Key>
+                <Property Name="Ltext" Type="Edm.String" Nullable="false" MaxLength="60" sap:unicode="false" sap:label="Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ident" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Factory Cal. ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HTtds" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Tplst"/>
+                </Key>
+                <Property Name="Tplst" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="TransportPlanPt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bezei" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="HTvro" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Route"/>
+                </Key>
+                <Property Name="Route" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Route" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Bezei" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Description" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Veiculo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vehicle"/>
+                </Key>
+                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CompGroup" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Cust.Comp.Group" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Vehicle type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehId" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Ext. identifier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Carrier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehNrtus" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Number of TUs" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VolUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Vol.UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="WgtUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Weight UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="DimUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Dimension UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="VehMaxwgt" Type="Edm.Double" Nullable="false" sap:unicode="false" sap:label="Maximum weight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehUnlwgt" Type="Edm.Double" Nullable="false" sap:unicode="false" sap:label="Unladen weight" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehMaxvol" Type="Edm.Double" Nullable="false" sap:unicode="false" sap:label="Maximum volume" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EquipNr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Equipment" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehHeight" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Height" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehWidth" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Width" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehLength" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Length" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Route" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Vehicle route" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tzone" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Time Zone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Calendar" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Factory Calendar" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Depot" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Plant" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehScrel" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="SC rel. vehicle" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NameEffDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Name Eff Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ClfEfdt" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="VehTypeEffDt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RegCntry" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Registered Cntry/Reg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RegDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Registered Date" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Owner" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Vehicle Owner" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RegOwner" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Registered Owner" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="GrpId" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="BerthCmpGrp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OwnFlag" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Own Vehicle" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Ballcap" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="CapUom" sap:label="Ballast Capacity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FlBnkCapa" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="CapUom" sap:label="FuelBnkCapacity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DslBnkCapa" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="CapUom" sap:label="Diesel Bunker Cap" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CapUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="BnkCapacityUoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="WtUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Draft Wt. UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ClassGrp" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="ClassfGroup" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vhclsign" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="VehicleCallSign" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Stcmnr" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Telex Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Srfxnr" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Fax Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Draft" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Max Vehicle Draft" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AverageSpeed" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="2" sap:unicode="false" sap:unit="AvrSpeedUom" sap:label="Average Speed" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AvrSpeedUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Speed UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="DeckCapacity" Type="Edm.Decimal" Nullable="false" Precision="6" Scale="2" sap:unicode="false" sap:unit="DeckCapUom" sap:label="Deck Capacity" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DeckCapUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="DeckCap UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ArrivalBuffer" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="0" sap:unicode="false" sap:label="Arrival Buffer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DepartureBuffer" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="0" sap:unicode="false" sap:label="Depart. Buffer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehMail" Type="Edm.String" Nullable="false" MaxLength="241" sap:unicode="false" sap:label="E-Mail Address" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehPhone" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Phone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tppoint" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="TransportPlanPt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehStatus" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Vehicle status" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChaDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Last Change" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChaName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehXblck" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="PurposeComplete Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="VeiculoText" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoText" FromRole="FromRole_VeiculoToVeiculoText" ToRole="ToRole_VeiculoToVeiculoText"/>
+                <NavigationProperty Name="VeiculoAtribUnidTransp" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" FromRole="FromRole_VeiculoToVeiculoAtribUnidTransp" ToRole="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
+            </EntityType>
+            <EntityType Name="Vttzz" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Tzone"/>
+                </Key>
+                <Property Name="Tzone" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Time Zone" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descript" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Time Zone Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Tzonerule" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Diff. from UTC" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Dstrule" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="DST" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="VeiculoText" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vehicle"/>
+                </Key>
+                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Vehicle text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="VeiculoAtribUnidTransp" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vehicle"/>
+                    <PropertyRef Name="TuNumber"/>
+                </Key>
+                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TuNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transport unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeqNmbr" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Seq.no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Created On" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CreName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Created By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChaDate" Type="Edm.DateTime" Nullable="false" Precision="7" sap:unicode="false" sap:label="Last Change" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ChaName" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Changed By" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="VeiculoToVeiculoAtribUnidTransp" sap:content-version="1">
+                <End Type="ZPC_VEICULO_SRV.Veiculo" Multiplicity="*" Role="FromRole_VeiculoToVeiculoAtribUnidTransp"/>
+                <End Type="ZPC_VEICULO_SRV.VeiculoAtribUnidTransp" Multiplicity="*" Role="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_VeiculoToVeiculoAtribUnidTransp">
+                        <PropertyRef Name="Vehicle"/>
+                    </Principal>
+                    <Dependent Role="ToRole_VeiculoToVeiculoAtribUnidTransp">
+                        <PropertyRef Name="Vehicle"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="VeiculoToVeiculoText" sap:content-version="1">
+                <End Type="ZPC_VEICULO_SRV.Veiculo" Multiplicity="*" Role="FromRole_VeiculoToVeiculoText"/>
+                <End Type="ZPC_VEICULO_SRV.VeiculoText" Multiplicity="0..1" Role="ToRole_VeiculoToVeiculoText"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_VeiculoToVeiculoText">
+                        <PropertyRef Name="Vehicle"/>
+                    </Principal>
+                    <Dependent Role="ToRole_VeiculoToVeiculoText">
+                        <PropertyRef Name="Vehicle"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZPC_VEICULO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="HT001wSet" EntityType="ZPC_VEICULO_SRV.HT001w" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HT006Set" EntityType="ZPC_VEICULO_SRV.HT006" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HTfacdSet" EntityType="ZPC_VEICULO_SRV.HTfacd" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HTtdsSet" EntityType="ZPC_VEICULO_SRV.HTtds" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="HTvroSet" EntityType="ZPC_VEICULO_SRV.HTvro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VeiculoSet" EntityType="ZPC_VEICULO_SRV.Veiculo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VttzzSet" EntityType="ZPC_VEICULO_SRV.Vttzz" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VeiculoTextSet" EntityType="ZPC_VEICULO_SRV.VeiculoText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VeiculoAtribUnidTranspSet" EntityType="ZPC_VEICULO_SRV.VeiculoAtribUnidTransp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="VeiculoToVeiculoAtribUnidTranspSet" Association="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="VeiculoSet" Role="FromRole_VeiculoToVeiculoAtribUnidTransp"/>
+                    <End EntitySet="VeiculoAtribUnidTranspSet" Role="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
+                </AssociationSet>
+                <AssociationSet Name="VeiculoToVeiculoTextSet" Association="ZPC_VEICULO_SRV.VeiculoToVeiculoText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="VeiculoSet" Role="FromRole_VeiculoToVeiculoText"/>
+                    <End EntitySet="VeiculoTextSet" Role="ToRole_VeiculoToVeiculoText"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link rel="self" href="http://virtual.ds4.sap.paranaxisto.com.br:50000/sap/opu/odata/sap/ZPC_VEICULO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://virtual.ds4.sap.paranaxisto.com.br:50000/sap/opu/odata/sap/ZPC_VEICULO_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

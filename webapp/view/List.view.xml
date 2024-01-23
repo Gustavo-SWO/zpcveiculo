@@ -1,0 +1,85 @@
+<mvc:View 
+    xmlns:mvc="sap.ui.core.mvc" 
+    xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" 
+    xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" 
+    xmlns:table="sap.ui.table" 
+    controllerName="zpcveiculo.controller.List" 
+    displayBlock="true">
+    <Page id="idListPage" title="{i18n>title}">
+        <content>
+            <smartFilterBar:SmartFilterBar
+                id="idSmartFilterBar"
+                entitySet="VeiculoSet"
+                showClearOnFB="true"
+                showFilterConfiguration="false"
+            >
+                <smartFilterBar:controlConfiguration>
+                    <smartFilterBar:ControlConfiguration
+                        id="idCarrierControlConfiguration"
+                        index="1"
+                        key="Carrier"
+                        visibleInAdvancedArea="true"
+                    />
+                    <smartFilterBar:ControlConfiguration
+                        id="idVehTypeControlConfiguration"
+                        index="2"
+                        key="VehType"
+                        visibleInAdvancedArea="true"
+                    />
+                    <smartFilterBar:ControlConfiguration
+                        id="idVehicleControlConfiguration"
+                        index="3"
+                        key="Vehicle"
+                        visibleInAdvancedArea="true"
+                    />
+                </smartFilterBar:controlConfiguration>
+            </smartFilterBar:SmartFilterBar>
+            <smartTable:SmartTable id="idSmartTable" width="100%" tableType="ResponsiveTable" enableAutoBinding="true" fitContainer="true" header="{i18n>title}" entitySet="VeiculoSet" smartFilterId="idSmartFilterBar" 
+                requestAtLeastFields="Vehicle,VehType,Carrier" 
+                initiallyVisibleFields="Vehicle,VehType,Carrier"
+                ignoredFields=""
+                persistencyKey="TablePersistencyKey"
+                showFullScreenButton="true" 
+                >
+                <table:Table id="idTable" rowActionCount="1" selectionMode="Single">
+                    <table:rowActionTemplate>
+                        <table:RowAction id="idRowAction">
+                            <table:items>
+                                <table:RowActionItem id="idRowActionItem" type="Navigation" press="onRowActionItemPress" icon="sap-icon://feeder-arrow"/>
+                            </table:items>
+                        </table:RowAction>
+                    </table:rowActionTemplate>
+                </table:Table>
+                <smartTable:customToolbar>
+                    <OverflowToolbar id="idOverflowToolbar" design="Transparent">
+                        <ToolbarSpacer id="id1ToolbarSpacer"/>
+                        <!-- <Button ="Criar Registro" type="Transparent" press="onNewRegister" icon="sap-icon://document"/> -->
+                        <Button
+                            id="idCriarVeiculoButton"
+                            text="{i18n>txtCreateComp}"
+                            tooltip="{i18n>txtCreateComp}"
+                            press="onCriarVeiculoButtonPress"
+                            icon="sap-icon://document"
+                        />
+                        <!-- <Button
+                            id="idEliminarVeiculoButton"
+                            text="{i18n>txtDeleteComp}"
+                            tooltip="{i18n>txtDeleteComp}"
+                            icon="sap-icon://delete"
+                            press="onEliminarVeiculoButtonPress"
+                            enabled="false"
+                        /> -->
+                    </OverflowToolbar>
+                </smartTable:customToolbar>
+                <!--  layout data used to make the table growing but the filter bar fixed  -->
+                <smartTable:layoutData>
+                    <FlexItemData
+                        id="id1FlexItemData"
+                        growFactor="1"
+                    />
+                </smartTable:layoutData>
+                
+            </smartTable:SmartTable>
+        </content>
+    </Page>
+</mvc:View>
