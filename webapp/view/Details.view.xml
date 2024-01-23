@@ -16,72 +16,53 @@
                                     <smartField:SmartField id="idVehicleSmartField" value="{Vehicle}" entitySet="VeiculoSet"/>
                                 </smartForm:elements>
                             </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehTypeGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehTypeSmartField" value="{VehType}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
                             <smartForm:GroupElement id="idVehTextGroupElement">
                                 <smartForm:elements>
                                     <smartField:SmartField id="idVehTextSmartField" value="{VeiculoText/VehText}" entitySet="VeiculoSet"/>
                                 </smartForm:elements>
                             </smartForm:GroupElement>
-                        </smartForm:groupElements>
-                    </smartForm:Group>
-                    <!-- <smartForm:Group title="{i18n>titleTUAttributes}" id="idTUAttributesGroup">
-                        <smartForm:groupElements>
-                            <smartForm:GroupElement id="idTuLengthGroupElement">
+                            <smartForm:GroupElement id="idVehTypeGroupElement">
                                 <smartForm:elements>
-                                    <smartField:SmartField id="idTuLengthSmartField" value="{TuLength}" entitySet="VeiculoSet"/>
+                                    <smartField:SmartField id="idVehTypeSmartField" value="{VehType}" entitySet="VeiculoSet"/>
                                 </smartForm:elements>
                             </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idTuWidthGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idTuWidthSmartField" value="{TuWidth}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idTuHeightGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idTuHeightSmartField" value="{TuHeight}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement> -->
-                            <!-- <smartForm:GroupElement id="idDimUomGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idDimUomSmartField" value="{DimUom}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement> -->
-                            <!-- <smartForm:GroupElement id="idTuUnlwgtGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idTuUnlwgtSmartField" value="{TuUnlwgt}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idTuMaxwgtGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idTuMaxwgtSmartField" value="{TuMaxwgt}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement> -->
-                            <!-- <smartForm:GroupElement id="idWgtUomGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idWgtUomSmartField" value="{WgtUom}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement> -->
-                        <!-- </smartForm:groupElements>
-                    </smartForm:Group> -->
-                    <smartForm:Group title="{i18n>titleInfoGroup}" id="idInfoGroup">
-                        <smartForm:groupElements>
-                            <!-- <smartForm:GroupElement id="idTuAxlesGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idTuAxlesSmartField" value="{TuAxles}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idTuIdGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idTuIdSmartField" value="{TuId}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement> -->
                             <smartForm:GroupElement id="idCarrierGroupElement">
                                 <smartForm:elements>
                                     <smartField:SmartField id="idCarrierSmartField" value="{Carrier}" entitySet="VeiculoSet"/>
+                                </smartForm:elements>
+                            </smartForm:GroupElement>
+                        </smartForm:groupElements>
+                    </smartForm:Group>
+                    <smartForm:Group title="{i18n>titleTUAttributes}" id="idTUAttributesGroup">
+                        <smartForm:groupElements>
+                            <smartForm:GroupElement id="idVehLengthGroupElement">
+                                <smartForm:elements>
+                                    <smartField:SmartField id="idVehLengthSmartField" value="{VehLength}" entitySet="VeiculoSet"/>
+                                </smartForm:elements>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="idVehWidthGroupElement">
+                                <smartForm:elements>
+                                    <smartField:SmartField id="idVehWidthSmartField" value="{VehWidth}" entitySet="VeiculoSet"/>
+                                </smartForm:elements>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="idVehHeightGroupElement">
+                                <smartForm:elements>
+                                    <smartField:SmartField id="idVehHeightSmartField" value="{VehHeight}" entitySet="VeiculoSet"/>
+                                </smartForm:elements>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="idVehUnlwgtGroupElement">
+                                <smartForm:elements>
+                                    <smartField:SmartField id="idVehUnlwgtSmartField" value="{VehUnlwgt}" entitySet="VeiculoSet"/>
+                                </smartForm:elements>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="idVehMaxwgtGroupElement">
+                                <smartForm:elements>
+                                    <smartField:SmartField id="idVehMaxwgtSmartField" value="{VehMaxwgt}" entitySet="VeiculoSet"/>
+                                </smartForm:elements>
+                            </smartForm:GroupElement>
+                            <smartForm:GroupElement id="idVehMaxvolGroupElement">
+                                <smartForm:elements>
+                                    <smartField:SmartField id="idVehMaxvolSmartField" value="{VehMaxvol}" entitySet="VeiculoSet"/>
                                 </smartForm:elements>
                             </smartForm:GroupElement>
                         </smartForm:groupElements>

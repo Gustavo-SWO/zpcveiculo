@@ -12,20 +12,24 @@ sap.ui.define([
 
             },
             onCriarVeiculoButtonPress: function (oEvent) {
-    
+
             },
             onEliminarVeiculoButtonPress: function (oEvent) {
-    
+
             },
             onRowActionItemPress: function (oEvent) {
                 var oLine = oEvent.getSource().getBindingContext().getObject();
-    
+
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
-                oRouter.navTo("details", { TuNumber: oLine.TuNumber });
+                oRouter.navTo("details", { Vehicle: oLine.Vehicle });
             },
             onCriarVeiculoButtonPress: function (oEvent) {
                 var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
                 oRouter.navTo("details");
-            }
+            },
+            onBeforeRebind: function (oEvent) {
+                var mBindingParams = oEvent.getParameter("bindingParams");
+                mBindingParams.parameters["expand"] = "VehicleText";
+            },
         });
     });

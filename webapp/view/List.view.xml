@@ -35,8 +35,8 @@
                 </smartFilterBar:controlConfiguration>
             </smartFilterBar:SmartFilterBar>
             <smartTable:SmartTable id="idSmartTable" width="100%" tableType="ResponsiveTable" enableAutoBinding="true" fitContainer="true" header="{i18n>title}" entitySet="VeiculoSet" smartFilterId="idSmartFilterBar" 
-                requestAtLeastFields="Vehicle,VehType,Carrier" 
-                initiallyVisibleFields="Vehicle,VehType,Carrier"
+                requestAtLeastFields="Vehicle,VehType,Carrier,VehMaxvol,VolUom,VehUnlwgt,VehMaxwgt,WgtUom,VehLength,VehHeight,VehWidth,DimUom" 
+                initiallyVisibleFields="Vehicle,VehType,Carrier,VehMaxvol,VehUnlwgt,VehMaxwgt,VehLength,VehHeight,VehWidth"
                 ignoredFields=""
                 persistencyKey="TablePersistencyKey"
                 showFullScreenButton="true" 

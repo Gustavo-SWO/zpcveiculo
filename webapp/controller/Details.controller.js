@@ -110,7 +110,7 @@ sap.ui.define([
                     error: function (e) {
                         if (e.responseText) {
                             var responseObj = JSON.parse(e.responseText);
-                            MessageBox.error(responseObj.error.message);
+                            MessageBox.error(responseObj.error.message.value);
                         }
                     }
                 });
