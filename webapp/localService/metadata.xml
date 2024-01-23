@@ -65,18 +65,18 @@
                 </Key>
                 <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:updatable="false"/>
                 <Property Name="VehType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Vehicle type" sap:updatable="false"/>
-                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Carrier"/>
-                <Property Name="VolUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Vol.UoM" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
-                <Property Name="WgtUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Weight UoM" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
-                <Property Name="DimUom" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Dimension UoM" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
-                <Property Name="VehMaxwgt" Type="Edm.Double" Nullable="false" sap:unicode="false" sap:unit="WgtUom" sap:label="Maximum weight" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehUnlwgt" Type="Edm.Double" Nullable="false" sap:unicode="false" sap:unit="WgtUom" sap:label="Unladen weight" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehMaxvol" Type="Edm.Double" Nullable="false" sap:unicode="false" sap:unit="VolUom" sap:label="Maximum volume" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehHeight" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Height" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehWidth" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Width" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehLength" Type="Edm.Decimal" Nullable="false" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Length" sap:sortable="false" sap:filterable="false"/>
-                <NavigationProperty Name="VeiculoText" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoText" FromRole="FromRole_VeiculoToVeiculoText" ToRole="ToRole_VeiculoToVeiculoText"/>
+                <Property Name="Carrier" Type="Edm.String" MaxLength="10" sap:unicode="false" sap:label="Carrier"/>
+                <Property Name="VolUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Vol.UoM" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="WgtUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Weight UoM" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="DimUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Dimension UoM" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="VehMaxwgt" Type="Edm.Double" sap:unicode="false" sap:unit="WgtUom" sap:label="Maximum weight" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehUnlwgt" Type="Edm.Double" sap:unicode="false" sap:unit="WgtUom" sap:label="Unladen weight" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehMaxvol" Type="Edm.Double" sap:unicode="false" sap:unit="VolUom" sap:label="Maximum volume" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehHeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Height" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehWidth" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Width" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehLength" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Length" sap:sortable="false" sap:filterable="false"/>
                 <NavigationProperty Name="VeiculoAtribUnidTransp" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" FromRole="FromRole_VeiculoToVeiculoAtribUnidTransp" ToRole="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
+                <NavigationProperty Name="VeiculoText" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoText" FromRole="FromRole_VeiculoToVeiculoText" ToRole="ToRole_VeiculoToVeiculoText"/>
             </EntityType>
             <EntityType Name="Vttzz" sap:content-version="1">
                 <Key>
@@ -92,7 +92,7 @@
                     <PropertyRef Name="Vehicle"/>
                 </Key>
                 <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Vehicle text" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Vehicle text"/>
             </EntityType>
             <Association Name="VeiculoToVeiculoText" sap:content-version="1">
                 <End Type="ZPC_VEICULO_SRV.Veiculo" Multiplicity="*" Role="FromRole_VeiculoToVeiculoText"/>
@@ -119,7 +119,7 @@
                 </ReferentialConstraint>
             </Association>
             <EntityContainer Name="ZPC_VEICULO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
-                <EntitySet Name="VeiculoAtribUnidTranspSet" EntityType="ZPC_VEICULO_SRV.VeiculoAtribUnidTransp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VeiculoAtribUnidTranspSet" EntityType="ZPC_VEICULO_SRV.VeiculoAtribUnidTransp" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HT001wSet" EntityType="ZPC_VEICULO_SRV.HT001w" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HT006Set" EntityType="ZPC_VEICULO_SRV.HT006" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HTfacdSet" EntityType="ZPC_VEICULO_SRV.HTfacd" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
@@ -127,7 +127,7 @@
                 <EntitySet Name="HTvroSet" EntityType="ZPC_VEICULO_SRV.HTvro" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="VeiculoSet" EntityType="ZPC_VEICULO_SRV.Veiculo" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="VttzzSet" EntityType="ZPC_VEICULO_SRV.Vttzz" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="VeiculoTextSet" EntityType="ZPC_VEICULO_SRV.VeiculoText" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="VeiculoTextSet" EntityType="ZPC_VEICULO_SRV.VeiculoText" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <AssociationSet Name="VeiculoToVeiculoAtribUnidTranspSet" Association="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="VeiculoSet" Role="FromRole_VeiculoToVeiculoAtribUnidTransp"/>
                     <End EntitySet="VeiculoAtribUnidTranspSet" Role="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
