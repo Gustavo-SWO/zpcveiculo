@@ -65,14 +65,14 @@ sap.ui.define([
 
             if (oElement.getVisible()) {
                 oElement.setVisible(false);
-                this.getView().byId("idSmartForm").setTitle("Exibir unid. Transporte " + this._key);
+                this.getView().byId("idSmartForm").setTitle("Exibir Veículo " + this._key);
             } else {
                 oElement.setVisible(true);
 
                 if (!this._key) {
-                    this.getView().byId("idSmartForm").setTitle("Criar unid. Transporte");
+                    this.getView().byId("idSmartForm").setTitle("Criar Veículo");
                 } else {
-                    this.getView().byId("idSmartForm").setTitle("Modif. unid. Transporte " + this._key);
+                    this.getView().byId("idSmartForm").setTitle("Modif. Veículo " + this._key);
                 }
             }
         },
@@ -91,7 +91,7 @@ sap.ui.define([
             var that = this;
             var oDataModel = this.getOwnerComponent().getModel();
 
-            this.getView().byId("idSmartForm").setTitle("Exibir unid. Transporte " + this._key);
+            this.getView().byId("idSmartForm").setTitle("Exibir Veículo " + this._key);
 
             this.getView().getModel().getMetaModel().loaded().then(function () {
                 that.getView().byId("idSmartForm").bindElement("/VeiculoSet('" + that._key + "')");
@@ -101,7 +101,7 @@ sap.ui.define([
             try {
                 oDataModel.read("/VeiculoSet('" + vehicle + "')", {
                     urlParameters: {
-                        "$expand": "VeiculoText"
+                        "$expand": "VeiculoText,VeiculoAtribUnidTransp"
                     },
                     filters: [],
                     success: function (oData, response) {
