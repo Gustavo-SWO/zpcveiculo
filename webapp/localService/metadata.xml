@@ -166,6 +166,9 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="Carrier"/>
                                     <PropertyValue Property="ValueListProperty" String="Lifnr"/>
                                 </Record>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Name1"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -181,6 +184,9 @@
                                 <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="VehType"/>
                                     <PropertyValue Property="ValueListProperty" String="VehType"/>
+                                </Record>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="VehText"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
@@ -198,6 +204,9 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="DimUom"/>
                                     <PropertyValue Property="ValueListProperty" String="Msehi"/>
                                 </Record>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Txdim"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -214,6 +223,9 @@
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="WgtUom"/>
                                     <PropertyValue Property="ValueListProperty" String="Msehi"/>
                                 </Record>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Txdim"/>
+                                </Record>
                             </Collection>
                         </PropertyValue>
                     </Record>
@@ -229,6 +241,9 @@
                                 <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
                                     <PropertyValue Property="LocalDataProperty" PropertyPath="VolUom"/>
                                     <PropertyValue Property="ValueListProperty" String="Msehi"/>
+                                </Record>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Txdim"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
