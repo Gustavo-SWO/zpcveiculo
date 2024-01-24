@@ -11,15 +11,21 @@ sap.ui.define([
 ) {
     "use strict";
 
-    const cModeInsert = "I";
-    const cModeUpdate = "U";
+    const cModeInsert  = "I";
+    const cModeUpdate  = "U";
     const cModeDisplay = "V";
 
     return Controller.extend("zpcveiculo.controller.Details", {
         _key: "",
         _mode: cModeDisplay,
+        _templateVeiculoAtribUnidTransp: {
+            Vehicle: null,
+            TuNumber: null,
+            SeqNmbr: null,
+            mode: cModeInsert
+        },
         onInit: function () {
-            sap.ui.core.UIComponent.getRouterFor(this).getRoute("details").attachPatternMatched(this.onRouteMatched, this);
+            sap.ui.core.UIComponent.getRouterFor(this).getRoute("details").attachPatternMatched(this._onRouteMatched, this);
 
             var oModel = this.getOwnerComponent().getModel();
             oModel.setDefaultBindingMode("TwoWay");
@@ -33,7 +39,44 @@ sap.ui.define([
 
             this.getView().setModel(new sap.ui.model.json.JSONModel([]), "tableAtribTUData");
         },
-        onRouteMatched: function (oEvent) {
+        onSmartFormEditToggled: function () {
+            var oElement = this.byId("idGravarButton");
+
+            if (oElement.getVisible()) {
+                this._setMode(cModeDisplay);
+                oElement.setVisible(false);
+                this.getView().byId("idSmartForm").setTitle("Exibir Veículo " + this._key);
+            } else {
+                oElement.setVisible(true);
+
+                if (!this._key) {
+                    this._setMode(cModeInsert);
+                    this.getView().byId("idSmartForm").setTitle("Criar Veículo");
+                } else {
+                    this._setMode(cModeUpdate);
+                    this.getView().byId("idSmartForm").setTitle("Modif. Veículo " + this._key);
+                }
+            }
+        },
+        navBack: function () {
+            const oHistory = History.getInstance();
+            const sPreviousHash = oHistory.getPreviousHash();
+
+            if (sPreviousHash !== undefined) {
+                window.history.go(-1);
+            } else {
+                const oRouter = this.getOwnerComponent().getRouter();
+                oRouter.navTo("RouteList", {}, {}, true);
+            }
+        },
+        onButtonAddRowPress: function (oEvent) {
+            let oModel = this.getView().getModel("tableAtribTUData");
+            let aData = oModel.getData();
+            aData.push({ ...this._templateVeiculoAtribUnidTransp });
+            oModel.setData(aData);
+        },
+
+        _onRouteMatched: function (oEvent) {
             var args = oEvent.getParameter("arguments");
 
             this._setKey(args["Vehicle"]);
@@ -71,39 +114,6 @@ sap.ui.define([
                 // });
             }
         },
-        onSmartFormEditToggled: function () {
-            var oElement = this.byId("idGravarButton");
-
-            if (oElement.getVisible()) {
-                this._setMode(cModeDisplay);
-                oElement.setVisible(false);
-                this.getView().byId("idSmartForm").setTitle("Exibir Veículo " + this._key);
-            } else {
-                oElement.setVisible(true);
-
-                if (!this._key) {
-                    this._setMode(cModeInsert);
-                    this.getView().byId("idSmartForm").setTitle("Criar Veículo");
-                } else {
-                    this._setMode(cModeUpdate);
-                    this.getView().byId("idSmartForm").setTitle("Modif. Veículo " + this._key);
-                }
-            }
-        },
-        navBack: function () {
-            const oHistory = History.getInstance();
-            const sPreviousHash = oHistory.getPreviousHash();
-
-            if (sPreviousHash !== undefined) {
-                window.history.go(-1);
-            } else {
-                const oRouter = this.getOwnerComponent().getRouter();
-                oRouter.navTo("RouteList", {}, true);
-            }
-        },
-        onButtonAddRowPress: function (oEvent) {
-
-        },
         _setKey: function (sKey) {
             this._key = sKey;
             let oModel = this.getView().getModel("viewData");
@@ -140,6 +150,7 @@ sap.ui.define([
 
                         for (let i = 0; i < aResults.length; i++) {
                             delete aResults[i]._metadata;
+                            aResults[i]["mode"] = cModeDisplay;
                         }
 
                         oModelVeiculoAtribUnidTransp.setData(aResults);
@@ -216,6 +227,8 @@ sap.ui.define([
             let oSendData = { ...oData };
             oSendData.VeiculoText = { ...oDataModel.getData(sEntityPath + "/VeiculoText") };
 
+            oSendData.VeiculoAtribUnidTransp = { ...this.getView().getModel("tableAtribTUData").getData() };
+
             try {
                 oDataModel.create("/VeiculoSet", oSendData, {
                     success: function (oData, response) {
@@ -234,68 +247,6 @@ sap.ui.define([
         },
         _saveError: function (e) {
             MessageBox.error("Erro ao gravar dados");
-            // if (e.responseText) {
-            //     var responseObj = JSON.parse(e.responseText);
-            //     MessageBox.error(responseObj.error.message);
-            // }
         }
-        // callCreate: function () {
-        //     var that = this;
-        //     var oDataModel = this.getOwnerComponent().getModel();
-        //     // var sEntityPath = "/VeiculoSet";
-        //     // var oData = oDataModel.getData(sEntityPath);
-
-        //     try {
-        //         // oDataModel.create(sEntityPath, oData, {
-        //         oDataModel.submitChanges({
-        //             success: function (oData, response) {
-        //                 MessageBox.success("Dados gravados com sucesso!", {
-        //                     onClose: function () {
-        //                         var oSmartForm = that.getView().byId("idSmartForm");
-        //                         oSmartForm._toggleEditMode();
-        //                     }
-        //                 });
-        //             },
-        //             error: function (e) {
-        //                 if (e.responseText) {
-        //                     var responseObj = JSON.parse(e.responseText);
-        //                     MessageBox.error(responseObj.error.message);
-        //                 }
-        //             }
-        //         });
-        //     } catch (e) {
-        //         MessageBox.error(e);
-        //     }
-        // },
-        // callUpdate: function () {
-        //     var that = this;
-        //     var oDataModel = this.getOwnerComponent().getModel();
-        //     var sEntityPath = "/VeiculoSet('" + this._key + "')";
-        //     var oData = oDataModel.getData(sEntityPath);
-
-        //     let oSendData = { ...oData };
-        //     oSendData.VeiculoText = { ...oDataModel.getData(sEntityPath + "/VeiculoText") };
-
-        //     try {
-        //         oDataModel.update(sEntityPath, oData, {
-        //             success: function (oData, response) {
-        //                 MessageBox.success("Dados gravados com sucesso!", {
-        //                     onClose: function () {
-        //                         var oSmartForm = that.getView().byId("idSmartForm");
-        //                         oSmartForm._toggleEditMode();
-        //                     }
-        //                 });
-        //             },
-        //             error: function (e) {
-        //                 if (e.responseText) {
-        //                     var responseObj = JSON.parse(e.responseText);
-        //                     MessageBox.error(responseObj.error.message);
-        //                 }
-        //             }
-        //         });
-        //     } catch (e) {
-        //         MessageBox.error(e);
-        //     }
-        // }
     });
 });

@@ -238,14 +238,14 @@
                                         id="idVehicleInput"
                                         value="{tableAtribTUData>Vehicle}"
                                         valueLiveUpdate="true"
-                                        editable="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        editable="{= ${tableAtribTUData>/mode} === 'I' }"
                                         maxLength="10"
-                                        visible="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        visible="{= ${tableAtribTUData>/mode} === 'I' }"
                                     />
                                     <ObjectIdentifier
                                         id="idVehicleObjectIdentifier"
                                         text="{tableAtribTUData>Vehicle}"
-                                        visible="{= ${viewData>/mode} === 'V' }"
+                                        visible="{= ${tableAtribTUData>/mode} === 'V' || ${tableAtribTUData>/mode} === 'U' }"
                                     />
                                 </HBox>
                                 <HBox
@@ -257,17 +257,15 @@
                                     <Input
                                         id="idTuNumberInput"
                                         value="{tableAtribTUData>TuNumber}"
-                                        fieldWidth="60%"
                                         valueLiveUpdate="true"
-                                        editable="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        editable="{= ${viewData>/mode} === 'I' }"
                                         maxLength="10"
-                                        width="8em"
-                                        visible="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        visible="{= ${viewData>/mode} === 'I' }"
                                     />
                                     <ObjectIdentifier
                                         id="idTuNumberObjectIdentifier"
                                         text="{tableAtribTUData>TuNumber}"
-                                        visible="{= ${viewData>/mode} === 'V' }"
+                                        visible="{= ${viewData>/mode} === 'V' || ${viewData>/mode} === 'U' }"
                                     />
                                 </HBox>
                                 <HBox
@@ -279,17 +277,15 @@
                                     <Input
                                         id="idSeqNmbrInput"
                                         value="{tableAtribTUData>SeqNmbr}"
-                                        fieldWidth="60%"
                                         valueLiveUpdate="true"
-                                        editable="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
-                                        maxLength="10"
-                                        width="8em"
-                                        visible="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        editable="{= ${viewData>/mode} === 'I' }"
+                                        maxLength="3"
+                                        visible="{= ${viewData>/mode} === 'I' }"
                                     />
                                     <ObjectIdentifier
                                         id="idSeqNmbrObjectIdentifier"
                                         text="{tableAtribTUData>SeqNmbr}"
-                                        visible="{= ${viewData>/mode} === 'V' }"
+                                        visible="{= ${viewData>/mode} === 'V' || ${viewData>/mode} === 'U' }"
                                     />
                                 </HBox>
                             </cells>
