@@ -1,123 +1,302 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:smartForm="sap.ui.comp.smartform" xmlns:smartField="sap.ui.comp.smartfield" controllerName="zpcveiculo.controller.Details" displayBlock="true">
-    <Page id="idDetailsPage" title="{i18n>titleDetails}" contentOnlyBusy="true">
-    <content>
-        <VBox id="idVBox" class="sapUiSmallMargin">
-            <smartForm:SmartForm id="idSmartForm" editTogglable="true" validationMode="Async" editToggled="onSmartFormEditToggled">
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:smartForm="sap.ui.comp.smartform"
+    xmlns:smartField="sap.ui.comp.smartfield"
+    controllerName="zpcveiculo.controller.Details"
+    displayBlock="true"
+>
+    <Page
+        id="idDetailsPage"
+        title="{i18n>titleDetails}"
+        contentOnlyBusy="true"
+    >
+        <content>
+            <VBox
+                id="idVBox"
+                class="sapUiSmallMargin"
+            >
+                <smartForm:SmartForm
+                    id="idSmartForm"
+                    editTogglable="true"
+                    validationMode="Async"
+                    editToggled="onSmartFormEditToggled"
+                    title="{= ${viewData>/mode} === 'I' ? ${i18n>txtCreateComp} : ${viewData>/mode} === 'U' ? ${i18n>titleDetailsEdit} : ${
+                            parts: ['i18n>titleDetailsDisplay', 'viewData>/key'],
+                            formatter: 'jQuery.sap.formatMessage'
+                        } }"
+                >
+                    <!-- <smartForm:SmartForm
+                    id="idSmartForm"
+                    editTogglable="true"
+                    validationMode="Async"
+                    editToggled="onSmartFormEditToggled"
+                    title="{i18n>txtCreateComp}"
+                > -->
                     <smartForm:customToolbar>
-                        <Toolbar id="idToolbar" width="100%" height="100%">
-                            <ToolbarSpacer id="id1ToolbarSpacer"/>
-                            <Button id="idGravarButton" type="Emphasized" text="{i18n>saveBtn}" icon="sap-icon://save" press="onGravarButtonPress" visible="false"/>
+                        <Toolbar
+                            id="idToolbar"
+                            width="100%"
+                            height="100%"
+                        >
+                            <ToolbarSpacer id="id1ToolbarSpacer" />
+                            <Button
+                                id="idGravarButton"
+                                type="Emphasized"
+                                text="{i18n>saveBtn}"
+                                icon="sap-icon://save"
+                                press="onGravarButtonPress"
+                                visible="false"
+                            />
                         </Toolbar>
                     </smartForm:customToolbar>
-                <smartForm:groups>
-                    <smartForm:Group title="{i18n>titleGeneralDataGroup}" id="idGenDataGroup">
-                        <smartForm:groupElements>
-                            <smartForm:GroupElement id="idVehicleGroupElement" visible="false">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehicleSmartField" value="{Vehicle}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehTextGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehTextSmartField" value="{VeiculoText/VehText}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehTypeGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehTypeSmartField" value="{VehType}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idCarrierGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idCarrierSmartField" value="{Carrier}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                        </smartForm:groupElements>
-                    </smartForm:Group>
-                    <smartForm:Group title="{i18n>titleTUAttributes}" id="idTUAttributesGroup">
-                        <smartForm:groupElements>
-                            <smartForm:GroupElement id="idVehLengthGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehLengthSmartField" value="{VehLength}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehWidthGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehWidthSmartField" value="{VehWidth}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehHeightGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehHeightSmartField" value="{VehHeight}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehUnlwgtGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehUnlwgtSmartField" value="{VehUnlwgt}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehMaxwgtGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehMaxwgtSmartField" value="{VehMaxwgt}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                            <smartForm:GroupElement id="idVehMaxvolGroupElement">
-                                <smartForm:elements>
-                                    <smartField:SmartField id="idVehMaxvolSmartField" value="{VehMaxvol}" entitySet="VeiculoSet"/>
-                                </smartForm:elements>
-                            </smartForm:GroupElement>
-                        </smartForm:groupElements>
-                    </smartForm:Group>
-                </smartForm:groups>
-            </smartForm:SmartForm>
-            <Toolbar id="idSpacerToolbar" width="100%" height="1em"/>
-            <Table
-                id="idVeiculoAtribUnidTranspTable"
-                items="{
-                            path: '/VeiculoAtribUnidTransp'
-                        }"
-                busyIndicatorDelay="200"
-                autoPopinMode="true"
-            >
-                <headerToolbar>
-                    <OverflowToolbar id="idTableOverflowToolbar">
-                        <Title
-                            id="idUnidadesDeTransporteTitle"
-                            text="{i18n>TUs}"
-                            level="H2"
-                        />
-                    </OverflowToolbar>
-                </headerToolbar>
-                <columns>
-                    <Column id="idVehicleColumn" hAlign="Center" importance="High" width="6em">
-                        <Text id="idVeculoText"  text="{i18n>Vehicle}" />
-                    </Column>
-                    <Column id="idTuNumberColumn" hAlign="Center" importance="High" width="7em">
-                        <Text id="idTuNumberText" text="{i18n>TuNumber}" />
-                    </Column>
-                    <Column id="idSeqNumberColumn" hAlign="Center" importance="High" width="7em">
-                        <Text id="idSeqNumberText" text="{i18n>SeqNumber}" />
-                    </Column>
-                </columns>
-                <items>
-                    <ColumnListItem id="idColumnListItem" vAlign="Middle">
-                        <cells>         
-                            <Input
-                                id="idVehicleInput"
-                                value="{Vehicle}"
-                                fieldWidth="60%"
-                                valueLiveUpdate="true"
-                                editable="false"
-                                maxLength="16"
-                                width="8em"
+                    <smartForm:groups>
+                        <smartForm:Group
+                            title="{i18n>titleGeneralDataGroup}"
+                            id="idGenDataGroup"
+                        >
+                            <smartForm:groupElements>
+                                <smartForm:GroupElement
+                                    id="idVehicleGroupElement"
+                                    visible="false"
+                                >
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehicleSmartField"
+                                            value="{Vehicle}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idVehTextGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehTextSmartField"
+                                            value="{VeiculoText/VehText}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idVehTypeGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehTypeSmartField"
+                                            value="{VehType}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idCarrierGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idCarrierSmartField"
+                                            value="{Carrier}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                            </smartForm:groupElements>
+                        </smartForm:Group>
+                        <smartForm:Group
+                            title="{i18n>titleTUAttributes}"
+                            id="idTUAttributesGroup"
+                        >
+                            <smartForm:groupElements>
+                                <smartForm:GroupElement id="idVehLengthGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehLengthSmartField"
+                                            value="{VehLength}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idVehWidthGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehWidthSmartField"
+                                            value="{VehWidth}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idVehHeightGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehHeightSmartField"
+                                            value="{VehHeight}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idVehUnlwgtGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehUnlwgtSmartField"
+                                            value="{VehUnlwgt}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idVehMaxwgtGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehMaxwgtSmartField"
+                                            value="{VehMaxwgt}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                                <smartForm:GroupElement id="idVehMaxvolGroupElement">
+                                    <smartForm:elements>
+                                        <smartField:SmartField
+                                            id="idVehMaxvolSmartField"
+                                            value="{VehMaxvol}"
+                                            entitySet="VeiculoSet"
+                                        />
+                                    </smartForm:elements>
+                                </smartForm:GroupElement>
+                            </smartForm:groupElements>
+                        </smartForm:Group>
+                    </smartForm:groups>
+                </smartForm:SmartForm>
+                <Toolbar
+                    id="idSpacerToolbar"
+                    width="100%"
+                    height="1em"
+                />
+                <Table
+                    id="idVeiculoAtribUnidTranspTable"
+                    items="{tableAtribTUData>/}"
+                    busyIndicatorDelay="200"
+                    autoPopinMode="true"
+                >
+                    <headerToolbar>
+                        <OverflowToolbar id="idTableOverflowToolbar">
+                            <Title
+                                id="idUnidadesDeTransporteTitle"
+                                text="{i18n>TUs}"
+                                level="H2"
                             />
-                            <ObjectIdentifier id="idTuNumberObjectIdentifier" text="{TuNumber}" />
-                            <ObjectIdentifier id="idSeqNumberObjectIdentifier" text="{SeqNumber}"/>
-                        </cells>
-                    </ColumnListItem>
-                </items>
-            </Table>
-        </VBox>
-    </content>
-</Page>
+                            <ToolbarSpacer id="id2ToolbarSpacer" />
+                            <Button
+                                id="idAddButton"
+                                icon="sap-icon://add"
+                                press="onButtonAddRowPress"
+                                visible="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                            />
+                        </OverflowToolbar>
+                    </headerToolbar>
+                    <columns>
+                        <Column
+                            id="idVehicleColumn"
+                            hAlign="Center"
+                            importance="High"
+                            width="6em"
+                        >
+                            <Text
+                                id="idsaplabelVeiculoText"
+                                text="{/#VeiculoAtribUnidTransp/Vehicle/@sap:label}"
+                            />
+                        </Column>
+                        <Column
+                            id="idTuNumberColumn"
+                            hAlign="Center"
+                            importance="High"
+                            width="7em"
+                        >
+                            <Text
+                                id="idsaplabelTuNumberText"
+                                text="{/#VeiculoAtribUnidTransp/TuNumber/@sap:label}"
+                            />
+                        </Column>
+                        <Column
+                            id="idSeqNumberColumn"
+                            hAlign="Center"
+                            importance="High"
+                            width="7em"
+                        >
+                            <Text
+                                id="idsaplabelSeqNmbrText"
+                                text="{/#VeiculoAtribUnidTransp/SeqNmbr/@sap:label}"
+                            />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem
+                            id="idColumnListItem"
+                            vAlign="Middle"
+                        >
+                            <cells>
+                                <HBox
+                                    id="id1HBox"
+                                    alignItems="Center"
+                                    alignContent="Center"
+                                    justifyContent="Center"
+                                >
+                                    <Input
+                                        id="idVehicleInput"
+                                        value="{tableAtribTUData>Vehicle}"
+                                        valueLiveUpdate="true"
+                                        editable="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        maxLength="10"
+                                        visible="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                    />
+                                    <ObjectIdentifier
+                                        id="idVehicleObjectIdentifier"
+                                        text="{tableAtribTUData>Vehicle}"
+                                        visible="{= ${viewData>/mode} === 'V' }"
+                                    />
+                                </HBox>
+                                <HBox
+                                    id="id2HBox"
+                                    alignItems="Center"
+                                    alignContent="Center"
+                                    justifyContent="Center"
+                                >
+                                    <Input
+                                        id="idTuNumberInput"
+                                        value="{tableAtribTUData>TuNumber}"
+                                        fieldWidth="60%"
+                                        valueLiveUpdate="true"
+                                        editable="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        maxLength="10"
+                                        width="8em"
+                                        visible="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                    />
+                                    <ObjectIdentifier
+                                        id="idTuNumberObjectIdentifier"
+                                        text="{tableAtribTUData>TuNumber}"
+                                        visible="{= ${viewData>/mode} === 'V' }"
+                                    />
+                                </HBox>
+                                <HBox
+                                    id="id3HBox"
+                                    alignItems="Center"
+                                    alignContent="Center"
+                                    justifyContent="Center"
+                                >
+                                    <Input
+                                        id="idSeqNmbrInput"
+                                        value="{tableAtribTUData>SeqNmbr}"
+                                        fieldWidth="60%"
+                                        valueLiveUpdate="true"
+                                        editable="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                        maxLength="10"
+                                        width="8em"
+                                        visible="{= (${viewData>/mode} === 'I' || ${viewData>/mode} === 'U') }"
+                                    />
+                                    <ObjectIdentifier
+                                        id="idSeqNmbrObjectIdentifier"
+                                        text="{tableAtribTUData>SeqNmbr}"
+                                        visible="{= ${viewData>/mode} === 'V' }"
+                                    />
+                                </HBox>
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
 </mvc:View>

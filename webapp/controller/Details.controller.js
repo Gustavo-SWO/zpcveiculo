@@ -11,9 +11,13 @@ sap.ui.define([
 ) {
     "use strict";
 
+    const cModeInsert = "I";
+    const cModeUpdate = "U";
+    const cModeDisplay = "V";
+
     return Controller.extend("zpcveiculo.controller.Details", {
         _key: "",
-        _modeCreate: false,
+        _mode: cModeDisplay,
         onInit: function () {
             sap.ui.core.UIComponent.getRouterFor(this).getRoute("details").attachPatternMatched(this.onRouteMatched, this);
 
@@ -21,18 +25,25 @@ sap.ui.define([
             oModel.setDefaultBindingMode("TwoWay");
 
             this.getView().setModel(oModel);
+
+            this.getView().setModel(new sap.ui.model.json.JSONModel({
+                key: this._key,
+                mode: this._mode
+            }, true), "viewData");
+
+            this.getView().setModel(new sap.ui.model.json.JSONModel([]), "tableAtribTUData");
         },
         onRouteMatched: function (oEvent) {
             var args = oEvent.getParameter("arguments");
 
-            this._key = args["Vehicle"];
+            this._setKey(args["Vehicle"]);
 
             if (this._key) {
-                this._modeCreate = false;
+                this._setMode(cModeDisplay);
                 this.getView().byId("idVehicleGroupElement").setVisible(false);
                 this._loadData(this._key);
             } else {
-                this._modeCreate = true;
+                this._setMode(cModeInsert);
                 this._switchFormCreate();
                 var oModel = this.getView().getModel();
                 // oModel.attachMetadataLoaded(function () {
@@ -64,14 +75,17 @@ sap.ui.define([
             var oElement = this.byId("idGravarButton");
 
             if (oElement.getVisible()) {
+                this._setMode(cModeDisplay);
                 oElement.setVisible(false);
                 this.getView().byId("idSmartForm").setTitle("Exibir Veículo " + this._key);
             } else {
                 oElement.setVisible(true);
 
                 if (!this._key) {
+                    this._setMode(cModeInsert);
                     this.getView().byId("idSmartForm").setTitle("Criar Veículo");
                 } else {
+                    this._setMode(cModeUpdate);
                     this.getView().byId("idSmartForm").setTitle("Modif. Veículo " + this._key);
                 }
             }
@@ -86,6 +100,19 @@ sap.ui.define([
                 const oRouter = this.getOwnerComponent().getRouter();
                 oRouter.navTo("RouteList", {}, true);
             }
+        },
+        onButtonAddRowPress: function (oEvent) {
+
+        },
+        _setKey: function (sKey) {
+            this._key = sKey;
+            let oModel = this.getView().getModel("viewData");
+            oModel.setProperty("/key", this._mode);
+        },
+        _setMode: function (sMode) {
+            this._mode = sMode;
+            let oModel = this.getView().getModel("viewData");
+            oModel.setProperty("/mode", this._mode);
         },
         _loadData: function (vehicle) {
             var that = this;
@@ -106,6 +133,24 @@ sap.ui.define([
                     filters: [],
                     success: function (oData, response) {
                         that.getView().byId("idSmartForm").bindElement("/VeiculoSet('" + vehicle + "')");
+
+                        let oModelVeiculoAtribUnidTransp = that.getView().getModel("tableAtribTUData");
+
+                        let aResults = oData.VeiculoAtribUnidTransp.results;
+
+                        for (let i = 0; i < aResults.length; i++) {
+                            delete aResults[i]._metadata;
+                        }
+
+                        oModelVeiculoAtribUnidTransp.setData(aResults);
+
+                        // let oTable = that.getView().byId("idVeiculoAtribUnidTranspTable");
+                        // oTable.setModel(oModelVeiculoAtribUnidTransp);
+
+                        // oTable.bindAggregation("items", {
+                        //     path: "/d/results",
+                        //     template: oTable.getBindingInfo("items").template
+                        // });
                     },
                     error: function (e) {
                         if (e.responseText) {
@@ -119,7 +164,7 @@ sap.ui.define([
             }
         },
         onGravarButtonPress: function (oEvent) {
-            if (this._modeCreate) {
+            if (this._mode === cModeInsert) {
                 this._saveCreate();
             } else {
                 this._saveUpdate();
@@ -128,7 +173,7 @@ sap.ui.define([
         _switchFormCreate: function () {
             var oSmartForm = this.getView().byId("idSmartForm");
 
-            if (this._modeCreate && !oSmartForm.getEditable()) {
+            if (this._mode === cModeInsert && !oSmartForm.getEditable()) {
                 //Create mode
                 this.getView().byId("idVehicleGroupElement").setVisible(true);
                 oSmartForm._toggleEditMode();
