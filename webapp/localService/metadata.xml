@@ -10,7 +10,15 @@
                 </Key>
                 <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="TuNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transport unit" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="SeqNmbr" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Seq.no." sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SeqNmbr" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Seq.no." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TuText" Type="Edm.String" MaxLength="40" sap:unicode="false" sap:label="Tr. unit text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ZshVehType" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="VehType"/>
+                </Key>
+                <Property Name="VehType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo de Veículo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Tipo de Veículo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <EntityType Name="HT001w" sap:content-version="1">
                 <Key>
@@ -103,12 +111,12 @@
                 <Property Name="Name1" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="Mcod1" Type="Edm.String" Nullable="false" MaxLength="25" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
-            <EntityType Name="ZshVehType" sap:value-list="true" sap:content-version="1">
+            <EntityType Name="ZshTu" sap:content-version="1">
                 <Key>
-                    <PropertyRef Name="VehType"/>
+                    <PropertyRef Name="TuNumber"/>
                 </Key>
-                <Property Name="VehType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Tipo de Veículo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Tipo de Veículo" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TuNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transport unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TuText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Tr. unit text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
             <Association Name="VeiculoToVeiculoText" sap:content-version="1">
                 <End Type="ZPC_VEICULO_SRV.Veiculo" Multiplicity="*" Role="FromRole_VeiculoToVeiculoText"/>
@@ -136,6 +144,7 @@
             </Association>
             <EntityContainer Name="ZPC_VEICULO_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="VeiculoAtribUnidTranspSet" EntityType="ZPC_VEICULO_SRV.VeiculoAtribUnidTransp" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZshVehTypeSet" EntityType="ZPC_VEICULO_SRV.ZshVehType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HT001wSet" EntityType="ZPC_VEICULO_SRV.HT001w" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HT006Set" EntityType="ZPC_VEICULO_SRV.HT006" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HTfacdSet" EntityType="ZPC_VEICULO_SRV.HTfacd" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
@@ -145,7 +154,7 @@
                 <EntitySet Name="VttzzSet" EntityType="ZPC_VEICULO_SRV.Vttzz" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="VeiculoTextSet" EntityType="ZPC_VEICULO_SRV.VeiculoText" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HLfa1VendorSet" EntityType="ZPC_VEICULO_SRV.HLfa1Vendor" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
-                <EntitySet Name="ZshVehTypeSet" EntityType="ZPC_VEICULO_SRV.ZshVehType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ZshTuSet" EntityType="ZPC_VEICULO_SRV.ZshTu" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <AssociationSet Name="VeiculoToVeiculoAtribUnidTranspSet" Association="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="VeiculoSet" Role="FromRole_VeiculoToVeiculoAtribUnidTransp"/>
                     <End EntitySet="VeiculoAtribUnidTranspSet" Role="ToRole_VeiculoToVeiculoAtribUnidTransp"/>

@@ -11,9 +11,11 @@ sap.ui.define([
 ) {
     "use strict";
 
-    const cModeInsert  = "I";
-    const cModeUpdate  = "U";
+    const cModeInsert = "I";
+    const cModeUpdate = "U";
     const cModeDisplay = "V";
+
+    var vm = null;
 
     return Controller.extend("zpcveiculo.controller.Details", {
         _key: "",
@@ -22,9 +24,12 @@ sap.ui.define([
             Vehicle: null,
             TuNumber: null,
             SeqNmbr: null,
+            TuText: null,
             mode: cModeInsert
         },
         onInit: function () {
+            vm = this;
+
             sap.ui.core.UIComponent.getRouterFor(this).getRoute("details").attachPatternMatched(this._onRouteMatched, this);
 
             var oModel = this.getOwnerComponent().getModel();
@@ -76,6 +81,131 @@ sap.ui.define([
             oModel.setData(aData);
         },
 
+        onSelectDialogPress: function (oEvent) {
+            var oInput = oEvent.getSource();
+            this.onSelectDialog(oEvent, {
+                title: oInput.data("title"),
+                key: oInput.data("key"),
+                path: oInput.data("path").replaceAll('#', '&'),
+                multiSelect: oInput.data("multi"),
+                descr: oInput.data("descr")
+            })
+        },
+        onSelectDialog: function (oEvent, oSettings) {
+
+            this.inputId = {};
+            this.inputId.Id = oEvent.getSource().getId();
+            this.inputId.Element = oEvent.getSource();
+
+            this.Settings = oSettings;
+            this.newPath = oSettings.path;
+            var isTrueSet = (oSettings.multiSelect === 'true');
+            var sServiceUrl = "";
+            var oModel = this.getView().getModel();
+
+            var aFilters = [];
+
+            vm.lastValueStateDialog = vm.getView().byId(vm.inputId.Id).getValueState();
+
+            if (vm.inputId.Id.includes("inputLgort")) {
+
+                let oLineList = oEvent.getSource().getParent().getBindingContext().getObject();
+
+                var oFilter = new Filter("Contrato", sap.ui.model.FilterOperator.EQ, oLineList.Contrato);
+                aFilters.push(oFilter);
+            }
+
+            if (!this._genericDialog || this.old != this.newPath) {
+                this._genericDialog = new sap.m.SelectDialog({
+                    title: oSettings.title,
+                    //multiSelect: isTrueSet,
+                    rememberSelections: true,
+                    items: {
+                        path: oSettings.path,
+                        filters: aFilters,
+                        template: new sap.m.StandardListItem({
+                            title: "{path:'" + oSettings.key + "',targetType: 'any'}",
+                            description: "{path:'" + oSettings.descr + "'}"
+                        })
+                    },
+                    search: function (evtSearch) {
+                        var sValue = evtSearch.getParameter("value");
+                        // var oList = this.byId("list");
+                        // oList.bindItems({ path: '/ZshTuSet', parameters: { custom: { 'search': sValue } } });
+                        var oBind = this.getBinding("items")
+
+                        // Atribuindo o parametro de Search na chamado do serviço, usando o binding 
+                        if (!oBind.mParameters) {
+                            oBind.mParameters = {};
+                        }
+                        if (!oBind.mParameters.custom) {
+                            oBind.mParameters.custom = {};
+                        }
+                        oBind.mParameters.custom.search = sValue;
+
+                        oBind.sCustomParams = this.getModel().createCustomParams(oBind.mParameters)
+                        oBind.refresh();
+                        // let oBindingInfo = evtSearch.getSource().getBindingInfo("items");
+
+                        // if (!oBindingInfo.parameters) {
+                        //     oBindingInfo.parameters = {};
+                        // }
+
+                        // if (!oBindingInfo.parameters.custom) {
+                        //     oBindingInfo.parameters.custom = {};
+                        // }
+                        // oBindingInfo.parameters.custom.search = sValue;
+
+                        // evtSearch.getSource().bindItems(oBindingInfo);
+                    },
+                    confirm: function (evt) {
+                        if (vm.Settings.multiSelect == "true") {
+                            var aSelectedItems = evt.getParameter("selectedItems"),
+                                oMultiInput = vm.getView().byId(vm.inputId.Id);
+
+                            if (aSelectedItems && aSelectedItems.length > 0) {
+                                aSelectedItems.forEach(function (oItem) {
+                                    oMultiInput.addToken(new Token({
+                                        text: oItem.getTitle()
+                                    }));
+                                });
+                            }
+                        } else {
+                            var oSelectedItem = evt.getParameter("selectedItem");
+                            if (oSelectedItem) {
+
+                                let oBindingContextVH = oSelectedItem.getBindingContext();
+
+                                let inputField = vm.getView().byId(vm.inputId.Id) ? vm.getView().byId(vm.inputId.Id) : vm.inputId.Element;
+                                // inputField.setValue(oSelectedItem.getTitle());
+                                // inputField.fireChange();
+
+                                let oBindingInput = inputField.getBinding('value');
+
+                                let oTargetModel = oBindingInput.getModel();
+                                let sPathTuNumber = oBindingInput.getResolvedPath();
+                                oTargetModel.setProperty(sPathTuNumber, oBindingContextVH.getProperty('TuNumber'));
+
+                                let sPathTuText = sPathTuNumber.replace('TuNumber','TuText');
+                                oTargetModel.setProperty(sPathTuText, oBindingContextVH.getProperty('TuText'));
+                            }
+                        }
+
+                    },
+                    cancel: function (evt) {
+                        vm.getView().byId(vm.inputId.Id).setValueState(vm.lastValueStateDialog);
+                    }
+                });
+
+                this._genericDialog.setModel(oModel);
+
+                //this._valueHelpSelectDialog.attachConfirm(this.handleClose);
+                // this.old = oSettings.path;
+            }
+            this._genericDialog.setMultiSelect(isTrueSet);
+            this._genericDialog.open();
+
+        },
         _onRouteMatched: function (oEvent) {
             var args = oEvent.getParameter("arguments");
 
@@ -149,7 +279,7 @@ sap.ui.define([
                         let aResults = oData.VeiculoAtribUnidTransp.results;
 
                         for (let i = 0; i < aResults.length; i++) {
-                            delete aResults[i]._metadata;
+                            delete aResults[i].__metadata;
                             aResults[i]["mode"] = cModeDisplay;
                         }
 
@@ -227,7 +357,18 @@ sap.ui.define([
             let oSendData = { ...oData };
             oSendData.VeiculoText = { ...oDataModel.getData(sEntityPath + "/VeiculoText") };
 
-            oSendData.VeiculoAtribUnidTransp = { ...this.getView().getModel("tableAtribTUData").getData() };
+            let aDataVeiculoAtribUnidTransp = this.getView().getModel("tableAtribTUData").getData();
+            oSendData.VeiculoAtribUnidTransp = [];
+
+            for (let i = 0; i < aDataVeiculoAtribUnidTransp.length; i++) {
+                let element = { ...aDataVeiculoAtribUnidTransp[i] };
+
+                if (element.mode === cModeInsert) {
+                    delete element.mode;
+                    element.Vehicle = this._key;
+                    oSendData.VeiculoAtribUnidTransp.push({ ...element });
+                }
+            }
 
             try {
                 oDataModel.create("/VeiculoSet", oSendData, {
@@ -236,6 +377,17 @@ sap.ui.define([
                             onClose: function () {
                                 var oSmartForm = that.getView().byId("idSmartForm");
                                 oSmartForm._toggleEditMode();
+
+                                that._loadData(that._key);
+                                // let oModelVeiculoAtribUnidTransp = that.getView().getModel("tableAtribTUData");
+
+                                // let aDataVeiculoAtribUnidTransp = oModelVeiculoAtribUnidTransp.getData();
+
+                                // for (let i = 0; i < aDataVeiculoAtribUnidTransp.length; i++) {
+                                //     let element = { ...aDataVeiculoAtribUnidTransp[i] };
+
+                                //     element.mode = cModeDisplay;
+                                // }
                             }
                         });
                     },
