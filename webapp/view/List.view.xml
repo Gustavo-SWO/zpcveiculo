@@ -19,6 +19,7 @@
                         index="1"
                         key="Carrier"
                         visibleInAdvancedArea="true"
+                        mandatory="mandatory"
                     />
                     <smartFilterBar:ControlConfiguration
                         id="idVehTypeControlConfiguration"
