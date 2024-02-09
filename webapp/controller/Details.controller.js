@@ -186,7 +186,7 @@ sap.ui.define([
                                 let sPathTuNumber = oBindingInput.getResolvedPath();
                                 oTargetModel.setProperty(sPathTuNumber, oBindingContextVH.getProperty('TuNumber'));
 
-                                let sPathTuText = sPathTuNumber.replace('TuNumber','TuText');
+                                let sPathTuText = sPathTuNumber.replace('TuNumber', 'TuText');
                                 oTargetModel.setProperty(sPathTuText, oBindingContextVH.getProperty('TuText'));
                             }
                         }
@@ -228,7 +228,23 @@ sap.ui.define([
 
                 //     }
                 // });
+                var oDataDefaultValues = {
+                    Carrier: undefined,
+                    DimUom: "M",
+                    VehHeight: undefined,
+                    VehLength: undefined,
+                    VehMaxvol: undefined,
+                    VehMaxwgt: undefined,
+                    VehType: undefined,
+                    VehUnlwgt: undefined,
+                    VehWidth: undefined,
+                    Vehicle: undefined,
+                    VolUom: undefined,
+                    WgtUom: "KG"
+                };
+
                 var oContext = oModel.createEntry("/VeiculoSet", {
+                    properties: oDataDefaultValues,
                     success: function (params) {
 
                     },

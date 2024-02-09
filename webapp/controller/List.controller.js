@@ -9,10 +9,9 @@ sap.ui.define([
 
         return Controller.extend("zpcveiculo.controller.List", {
             onInit: function () {
+                var oModel = this.getOwnerComponent().getModel();
 
-            },
-            onCriarVeiculoButtonPress: function (oEvent) {
-
+                this.getView().setModel(oModel);
             },
             onEliminarVeiculoButtonPress: function (oEvent) {
 
