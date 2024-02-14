@@ -239,7 +239,7 @@ sap.ui.define([
                     VehUnlwgt: undefined,
                     VehWidth: undefined,
                     Vehicle: undefined,
-                    VolUom: undefined,
+                    VolUom: "L",
                     WgtUom: "KG"
                 };
 

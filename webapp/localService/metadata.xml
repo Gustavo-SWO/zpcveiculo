@@ -70,17 +70,17 @@
                 <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:updatable="false"/>
                 <Property Name="VehType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Vehicle type" sap:updatable="false" sap:value-list="standard"/>
                 <Property Name="Carrier" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:unicode="false" sap:label="Carrier" sap:value-list="standard"/>
-                <Property Name="VolUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Vol.UoM" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
-                <Property Name="WgtUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Weight UoM" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
-                <Property Name="DimUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Dimension UoM" sap:sortable="false" sap:filterable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="VolUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Vol.UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="WgtUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Weight UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
+                <Property Name="DimUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Dimension UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
                 <Property Name="VehMaxwgt" Type="Edm.Double" sap:unicode="false" sap:unit="WgtUom" sap:label="Maximum weight" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="VehUnlwgt" Type="Edm.Double" sap:unicode="false" sap:unit="WgtUom" sap:label="Unladen weight" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="VehMaxvol" Type="Edm.Double" sap:unicode="false" sap:unit="VolUom" sap:label="Maximum volume" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="VehHeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Height" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="VehWidth" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Width" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="VehLength" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Length" sap:sortable="false" sap:filterable="false"/>
-                <NavigationProperty Name="VeiculoAtribUnidTransp" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" FromRole="FromRole_VeiculoToVeiculoAtribUnidTransp" ToRole="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
                 <NavigationProperty Name="VeiculoText" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoText" FromRole="FromRole_VeiculoToVeiculoText" ToRole="ToRole_VeiculoToVeiculoText"/>
+                <NavigationProperty Name="VeiculoAtribUnidTransp" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" FromRole="FromRole_VeiculoToVeiculoAtribUnidTransp" ToRole="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
             </EntityType>
             <EntityType Name="Vttzz" sap:content-version="1">
                 <Key>
