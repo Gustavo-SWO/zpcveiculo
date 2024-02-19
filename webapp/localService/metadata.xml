@@ -67,7 +67,7 @@
                 <Key>
                     <PropertyRef Name="Vehicle"/>
                 </Key>
-                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:updatable="false"/>
+                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:updatable="false" sap:value-list="standard"/>
                 <Property Name="VehType" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Vehicle type" sap:updatable="false" sap:value-list="standard"/>
                 <Property Name="Carrier" Type="Edm.String" MaxLength="10" sap:aggregation-role="dimension" sap:unicode="false" sap:label="Carrier" sap:value-list="standard"/>
                 <Property Name="VolUom" Type="Edm.String" MaxLength="3" sap:unicode="false" sap:label="Vol.UoM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:value-list="standard" sap:semantics="unit-of-measure"/>
@@ -112,6 +112,14 @@
                 <Property Name="TuNumber" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transport unit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="TuText" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Tr. unit text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
             </EntityType>
+            <EntityType Name="SH_Veiculo" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vehicle"/>
+                </Key>
+                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VehText9" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
             <Association Name="VeiculoToVeiculoText" sap:content-version="1">
                 <End Type="ZPC_VEICULO_SRV.Veiculo" Multiplicity="*" Role="FromRole_VeiculoToVeiculoText"/>
                 <End Type="ZPC_VEICULO_SRV.VeiculoText" Multiplicity="0..1" Role="ToRole_VeiculoToVeiculoText"/>
@@ -149,6 +157,7 @@
                 <EntitySet Name="VeiculoTextSet" EntityType="ZPC_VEICULO_SRV.VeiculoText" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="HLfa1VendorSet" EntityType="ZPC_VEICULO_SRV.HLfa1Vendor" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <EntitySet Name="ZshTuSet" EntityType="ZPC_VEICULO_SRV.ZshTu" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="SH_VeiculoSet" EntityType="ZPC_VEICULO_SRV.SH_Veiculo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
                 <AssociationSet Name="VeiculoToVeiculoAtribUnidTranspSet" Association="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
                     <End EntitySet="VeiculoSet" Role="FromRole_VeiculoToVeiculoAtribUnidTransp"/>
                     <End EntitySet="VeiculoAtribUnidTranspSet" Role="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
@@ -158,6 +167,25 @@
                     <End EntitySet="VeiculoTextSet" Role="ToRole_VeiculoToVeiculoText"/>
                 </AssociationSet>
             </EntityContainer>
+            <Annotations Target="ZPC_VEICULO_SRV.Veiculo/Vehicle" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
+                    <Record>
+                        <PropertyValue Property="CollectionPath" String="SH_VeiculoSet"/>
+                        <PropertyValue Property="SearchSupported" Bool="true"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Vehicle"/>
+                                    <PropertyValue Property="ValueListProperty" String="Vehicle"/>
+                                </Record>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="VehText9"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
             <Annotations Target="ZPC_VEICULO_SRV.Veiculo/Carrier" xmlns="http://docs.oasis-open.org/odata/ns/edm">
                 <Annotation Term="com.sap.vocabularies.Common.v1.ValueList">
                     <Record>
