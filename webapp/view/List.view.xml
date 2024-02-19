@@ -1,17 +1,33 @@
 <mvc:View 
     xmlns:mvc="sap.ui.core.mvc" 
-    xmlns="sap.m" xmlns:smartTable="sap.ui.comp.smarttable" 
+    xmlns="sap.m"
+    xmlns:f="sap.f" 
+    xmlns:smartTable="sap.ui.comp.smarttable" 
     xmlns:smartFilterBar="sap.ui.comp.smartfilterbar" 
     xmlns:table="sap.ui.table" 
     controllerName="zpcveiculo.controller.List" 
     displayBlock="true">
-    <Page id="idListPage" title="{i18n>title}">
-        <content>
+    <f:DynamicPage id="idListPage"
+        fitContent="true">
+        <f:title>
+            <f:DynamicPageTitle id="idDynamicPageTitle">
+                <f:heading>
+                    <Title id="idVeiculosHdrTitle" text="{i18n>title}" />
+                </f:heading>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader
+                id="dynamicalPageHeader"
+                pinnable="true"
+            >
+                <f:content>
             <smartFilterBar:SmartFilterBar
                 id="idSmartFilterBar"
                 entitySet="VeiculoSet"
                 showClearOnFB="true"
                 showFilterConfiguration="false"
+                useToolbar="false"
             >
                 <smartFilterBar:controlConfiguration>
                     <smartFilterBar:ControlConfiguration
@@ -35,6 +51,10 @@
                     />
                 </smartFilterBar:controlConfiguration>
             </smartFilterBar:SmartFilterBar>
+                </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
             <smartTable:SmartTable id="idSmartTable" width="100%" tableType="ResponsiveTable" enableAutoBinding="true" fitContainer="true" header="{i18n>title}" entitySet="VeiculoSet" smartFilterId="idSmartFilterBar" 
                 requestAtLeastFields="Vehicle,VehType,Carrier,VehMaxvol,VolUom,VehUnlwgt,VehMaxwgt,WgtUom,VehLength,VehHeight,VehWidth,DimUom" 
                 initiallyVisibleFields="Vehicle,VehType,Carrier,VehMaxvol,VehUnlwgt,VehMaxwgt,VehLength,VehHeight,VehWidth"
@@ -81,6 +101,6 @@
                 </smartTable:layoutData>
                 
             </smartTable:SmartTable>
-        </content>
-    </Page>
+        </f:content>
+    </f:DynamicPage>
 </mvc:View>

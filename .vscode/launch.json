@@ -23,7 +23,7 @@
       "port": 9229,
       "env": {
         "DEBUG": "--inspect",
-        "FIORI_TOOLS_URL_PARAMS": "sap-client=210&sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_URL_PARAMS": "sap-client=240&sap-language=PT&sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/zpc_veiculo\"}"
       }
     },
@@ -51,7 +51,7 @@
       "outputCapture": "std",
       "port": 9229,
       "env": {
-        "FIORI_TOOLS_URL_PARAMS": "sap-client=210&sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_URL_PARAMS": "sap-client=240&sap-language=PT&sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/zpc_veiculo\"}"
       }
     },
@@ -79,7 +79,7 @@
       "outputCapture": "std",
       "port": 9229,
       "env": {
-        "FIORI_TOOLS_URL_PARAMS": "sap-client=210&sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_URL_PARAMS": "sap-client=240&sap-language=PT&sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/zpc_veiculo\"}"
       }
     },
@@ -106,7 +106,7 @@
       "port": 9229,
       "env": {
         "DEBUG": "--inspect",
-        "FIORI_TOOLS_URL_PARAMS": "sap-client=210&sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_URL_PARAMS": "sap-client=240&sap-language=PT&sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/zpc_veiculo\"}"
       }
     },
@@ -134,7 +134,7 @@
       "outputCapture": "std",
       "port": 9229,
       "env": {
-        "FIORI_TOOLS_URL_PARAMS": "sap-client=210&sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_URL_PARAMS": "sap-client=240&sap-language=PT&sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/zpc_veiculo\"}"
       }
     },
@@ -162,7 +162,7 @@
       "outputCapture": "std",
       "port": 9229,
       "env": {
-        "FIORI_TOOLS_URL_PARAMS": "sap-client=210&sap-ui-xx-viewCache=false",
+        "FIORI_TOOLS_URL_PARAMS": "sap-client=240&sap-language=PT&sap-ui-xx-viewCache=false",
         "run.config": "{\"handlerId\":\"fiori_tools\",\"runnableId\":\"/home/user/projects/zpc_veiculo\"}"
       }
     }
