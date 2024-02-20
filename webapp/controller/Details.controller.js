@@ -213,7 +213,7 @@ sap.ui.define([
 
             if (this._key) {
                 this._setMode(cModeDisplay);
-                this.getView().byId("idVehicleGroupElement").setVisible(false);
+                // this.getView().byId("idVehicleGroupElement").setVisible(false);
                 this._loadData(this._key);
             } else {
                 this._setMode(cModeInsert);
@@ -256,6 +256,12 @@ sap.ui.define([
                 this.getView().setBindingContext(oContext);
 
                 this.getView().byId("idSmartForm").bindElement(oContext.getPath());
+
+                let oModelAtribTU = this.getView().getModel("tableAtribTUData");
+
+                if (oModelAtribTU) {
+                    oModelAtribTU.setData([]);
+                }
 
                 // });
             }
@@ -332,7 +338,7 @@ sap.ui.define([
 
             if (this._mode === cModeInsert && !oSmartForm.getEditable()) {
                 //Create mode
-                this.getView().byId("idVehicleGroupElement").setVisible(true);
+                // this.getView().byId("idVehicleGroupElement").setVisible(true);
                 oSmartForm._toggleEditMode();
                 oSmartForm.setEditTogglable(false);
             }
