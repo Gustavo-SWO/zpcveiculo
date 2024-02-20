@@ -79,8 +79,8 @@
                 <Property Name="VehHeight" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Height" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="VehWidth" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Width" sap:sortable="false" sap:filterable="false"/>
                 <Property Name="VehLength" Type="Edm.Decimal" Precision="13" Scale="3" sap:unicode="false" sap:unit="DimUom" sap:label="Length" sap:sortable="false" sap:filterable="false"/>
-                <NavigationProperty Name="VeiculoText" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoText" FromRole="FromRole_VeiculoToVeiculoText" ToRole="ToRole_VeiculoToVeiculoText"/>
                 <NavigationProperty Name="VeiculoAtribUnidTransp" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoAtribUnidTransp" FromRole="FromRole_VeiculoToVeiculoAtribUnidTransp" ToRole="ToRole_VeiculoToVeiculoAtribUnidTransp"/>
+                <NavigationProperty Name="VeiculoText" Relationship="ZPC_VEICULO_SRV.VeiculoToVeiculoText" FromRole="FromRole_VeiculoToVeiculoText" ToRole="ToRole_VeiculoToVeiculoText"/>
             </EntityType>
             <EntityType Name="Vttzz" sap:content-version="1">
                 <Key>
@@ -116,9 +116,10 @@
                 <Key>
                     <PropertyRef Name="Vehicle"/>
                 </Key>
-                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="VehText9" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
-                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vehicle" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vehicle Number" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
+                <Property Name="VehText9" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Vehicle text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Language" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Language" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Carrier" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Transportadora" sap:creatable="false" sap:updatable="false" sap:sortable="false"/>
             </EntityType>
             <Association Name="VeiculoToVeiculoText" sap:content-version="1">
                 <End Type="ZPC_VEICULO_SRV.Veiculo" Multiplicity="*" Role="FromRole_VeiculoToVeiculoText"/>
@@ -180,6 +181,10 @@
                                 </Record>
                                 <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterDisplayOnly">
                                     <PropertyValue Property="ValueListProperty" String="VehText9"/>
+                                </Record>
+                                <Record Type="com.sap.vocabularies.Common.v1.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Carrier"/>
+                                    <PropertyValue Property="ValueListProperty" String="Carrier"/>
                                 </Record>
                             </Collection>
                         </PropertyValue>
