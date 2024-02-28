@@ -217,7 +217,6 @@ sap.ui.define([
                 this._loadData(this._key);
             } else {
                 this._setMode(cModeInsert);
-                this._switchFormCreate();
                 var oModel = this.getView().getModel();
                 // oModel.attachMetadataLoaded(function () {
                 // var oContextChild = oModel.createEntry("/VeiculoTextSet", {
@@ -264,6 +263,7 @@ sap.ui.define([
                 }
 
                 // });
+                this._setSmartForm();
             }
         },
         _setKey: function (sKey) {
@@ -314,6 +314,7 @@ sap.ui.define([
                         //     path: "/d/results",
                         //     template: oTable.getBindingInfo("items").template
                         // });
+                        that._setSmartForm();
                     },
                     error: function (e) {
                         if (e.responseText) {
@@ -333,14 +334,18 @@ sap.ui.define([
                 this._saveUpdate();
             }
         },
-        _switchFormCreate: function () {
+        _setSmartForm: function () {
             var oSmartForm = this.getView().byId("idSmartForm");
 
             if (this._mode === cModeInsert && !oSmartForm.getEditable()) {
                 //Create mode
-                // this.getView().byId("idVehicleGroupElement").setVisible(true);
+                // this.getView().byId("idTuNumberGroupElement").setVisible(true);
                 oSmartForm._toggleEditMode();
                 oSmartForm.setEditTogglable(false);
+            } else if (this._mode === cModeDisplay && oSmartForm.getEditable()) {
+                //Display mode
+                oSmartForm.setEditTogglable(true)
+                oSmartForm._toggleEditMode();;
             }
         },
         _saveCreate: function () {
@@ -350,6 +355,19 @@ sap.ui.define([
             var oData = oDataModel.getData(sEntityPath);
             let oSendData = { ...oData };
             oSendData.VeiculoText = { ...oDataModel.getData(sEntityPath + "/VeiculoText") };
+
+            let aDataVeiculoAtribUnidTransp = this.getView().getModel("tableAtribTUData").getData();
+            oSendData.VeiculoAtribUnidTransp = [];
+
+            for (let i = 0; i < aDataVeiculoAtribUnidTransp.length; i++) {
+                let element = { ...aDataVeiculoAtribUnidTransp[i] };
+
+                if (element.mode === cModeInsert) {
+                    delete element.mode;
+                    element.Vehicle = this._key;
+                    oSendData.VeiculoAtribUnidTransp.push({ ...element });
+                }
+            }
 
             try {
                 // oDataModel.submitChanges({
@@ -385,7 +403,7 @@ sap.ui.define([
             for (let i = 0; i < aDataVeiculoAtribUnidTransp.length; i++) {
                 let element = { ...aDataVeiculoAtribUnidTransp[i] };
 
-                if (element.mode === cModeInsert) {
+                if (element.mode === cModeInsert || element.mode === cModeUpdate) {
                     delete element.mode;
                     element.Vehicle = this._key;
                     oSendData.VeiculoAtribUnidTransp.push({ ...element });
@@ -397,19 +415,9 @@ sap.ui.define([
                     success: function (oData, response) {
                         MessageBox.success("Dados gravados com sucesso!", {
                             onClose: function () {
-                                var oSmartForm = that.getView().byId("idSmartForm");
-                                oSmartForm._toggleEditMode();
-
-                                that._loadData(that._key);
-                                // let oModelVeiculoAtribUnidTransp = that.getView().getModel("tableAtribTUData");
-
-                                // let aDataVeiculoAtribUnidTransp = oModelVeiculoAtribUnidTransp.getData();
-
-                                // for (let i = 0; i < aDataVeiculoAtribUnidTransp.length; i++) {
-                                //     let element = { ...aDataVeiculoAtribUnidTransp[i] };
-
-                                //     element.mode = cModeDisplay;
-                                // }
+                                // var oSmartForm = that.getView().byId("idSmartForm");
+                                // oSmartForm._toggleEditMode();
+                                window.location.reload();
                             }
                         });
                     },
